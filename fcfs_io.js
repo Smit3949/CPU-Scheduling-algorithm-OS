@@ -110,7 +110,7 @@ for(var i=final_ans.length-1;i>=0;i--){
 }
 for(var i=0;i<n;i++){
 	tat[i]=cmp_time[i] - artt[i];
-	wt[i] = tat[i]-total_btt[i];
+	wt[i] = tat[i]-total_bt[i];
 }
 for(var i=0;i<n;i++){
 	total_wt = total_wt + wt[i];
