@@ -2,9 +2,8 @@ var tuple = [
 	{pid:1,bt1:6,art:0,io:10,bt2:4},
 	{pid:2,bt1:9,art:2,io:15,bt2:6},
 	{pid:3,bt1:3,art:4,io:5,bt2:2},
-	
-	
 ];
+var n = tuple.length;
 var total_bt = [];
 var artt = [];
 var total_btt = [];
@@ -18,18 +17,10 @@ tuple.sort(function(a, b) {
   return a.art - b.art;
 });
 tuple.sort();
-
-var n = tuple.length;
-var wt = [];
-var tat = [];
-var total_wt = 0;
-var total_tat = 0;
-var rt = [];
-for(var i=0;i<n;i++){
-	rt.push(tuple[i].bt);
-}
-
-
+var wt = [];//waiting time
+var tat = [];//turnaround time
+var total_wt = 0;//total waiting time
+var total_tat = 0;//total turnaround time
 var final_ans = [];
 var visited = [];
 var main_que = [];
@@ -42,8 +33,8 @@ var btco = [];
 for(var i=0;i<n;i++){
 	btco[i] = 0;
 }
-var last = 1000;
-for(var i=0;i<50;i++){
+var last = 10001;
+for(var i=0;i<10000;i++){
 
 	for(var j=0;j<n;j++){
 		if(tuple[j].art<=i && visited[j]===0){
@@ -56,17 +47,15 @@ for(var i=0;i<50;i++){
 			if(flag===0)main_que.push(j);
 		}
 	}
-	if(last!=1000){
+	if(last!=10001){
 		main_que.push(last);
 	}
-	
 	var state = -1;
 	if(main_que.length!==0){
 		state = main_que[0];
 		visited[state]=1;
 	}
 	main_que.shift();
-	
 	if(state == -1){
 		final_ans.push('/');
 		var smit = [];
@@ -75,7 +64,6 @@ for(var i=0;i<50;i++){
 	else{
 		if(btco[state]===0){
 			var to = Math.min(tuple[state].bt1,tq);
-		//	console.log(to);
 			for(var j=0;j<to;j++){
 				final_ans.push(tuple[state].pid);
 			}
@@ -83,7 +71,7 @@ for(var i=0;i<50;i++){
 			tuple[state].bt1-=to;
 			if(tuple[state].bt1===0){
 				btco[state]=1;
-				last = 1000;
+				last = 10001;
 				tuple[state].art = i + to + tuple[state].io;
 				visited[state]=0;
 			}
@@ -96,12 +84,9 @@ for(var i=0;i<50;i++){
 				}
 				que.push(smit);
 			}
-		//	console.log(last);
 			i+=to-1;
 		}
 		else{
-		//	console.log(i + " "+ state);
-			
 			var to = Math.min(tuple[state].bt2,tq);
 			for(var j=0;j<to;j++){
 				final_ans.push(tuple[state].pid);
@@ -110,8 +95,8 @@ for(var i=0;i<50;i++){
 			tuple[state].bt2-=to;
 			if(tuple[state].bt2===0){
 				btco[state]=1;
-				last = 1000;
-				tuple[state].art = 1000;
+				last = 10001;
+				tuple[state].art = 10001;
 				visited[state]=1;
 			}
 			for(var j=i;j<i+to;j++){
