@@ -7,44 +7,33 @@ var tuple = [
 	{pid:6,bt:4,art:5,prio:12},
 	{pid:7,bt:6,art:6,prio:9},
 ];
-
+var n = tuple.length;
 var artt = [];
 var total_btt = [];
 for(var i=0;i<tuple.length;i++){
 	total_btt[i] = tuple[i].bt; 
 	artt[i] = tuple[i].art;
-//	console.log(total_bt[i]);
 }
 var tuple_temp = tuple;
 tuple.sort(function(a, b) {
   return a.art - b.art;
 });
 tuple.sort();
-
-var n = tuple.length;
 var wt = [];
 var tat = [];
 var total_wt = 0;
 var total_tat = 0;
-var rt = [];
-for(var i=0;i<n;i++){
-	rt.push(tuple[i].bt);
-}
-
-
 var final_ans = [];
 var visited = [];
 for(var i=0;i<tuple.length;i++){
 	visited[i]=0;
 }
-
 var que = [];
 var btco = [];
 for(var i=0;i<n;i++){
 	btco[i] = 0;
 }
-
-for(var i=0;i<50;i++){
+for(var i=0;i<10000;i++){
 	
 	for(var j=0;j<n;j++){
 		if(tuple[j].bt<=0){
@@ -106,7 +95,6 @@ for(var i=0;i<tuple.length;i++){
 	cmp_time[i]=-1;
 }
 for(var i=final_ans.length-1;i>=0;i--){
-//	console.log(final_ans[i]);
 	if(final_ans[i]==='/'){}
 		else{
 		if(cmp_time[final_ans[i]-1]==-1){
@@ -115,10 +103,6 @@ for(var i=final_ans.length-1;i>=0;i--){
 		}}
 	
 }
-
-
-var wt  = [];
-
 for(var i=0;i<n;i++){
 	tat[i]=cmp_time[i] - artt[i];
 
