@@ -10,25 +10,16 @@ var total_btt = [];
 for(var i=0;i<tuple.length;i++){
 	total_btt[i] = tuple[i].bt; 
 	artt[i] = tuple[i].art;
-//	console.log(total_bt[i]);
 }
 var tuple_temp = tuple;
 tuple.sort(function(a, b) {
   return a.art - b.art;
 });
 tuple.sort();
-
-var n = tuple.length;
 var wt = [];
 var tat = [];
 var total_wt = 0;
 var total_tat = 0;
-var rt = [];
-for(var i=0;i<n;i++){
-	rt.push(tuple[i].bt);
-}
-
-
 var final_ans = [];
 var visited = [];
 for(var i=0;i<tuple.length;i++){
@@ -41,7 +32,7 @@ for(var i=0;i<n;i++){
 	btco[i] = 0;
 }
 
-for(var i=0;i<50;i++){
+for(var i=0;i<10000;i++){
 	
 	for(var j=0;j<n;j++){
 		if(tuple[j].bt<=0){
@@ -52,18 +43,12 @@ for(var i=0;i<50;i++){
 	var state = -1;
 	for(var j=0;j<n;j++){
 		if(tuple[j].art <= i){
-		//	if(i==7) console.log(j+" j");
 			if(tuple[j].bt < mn && visited[j]===0){
-				//if(i==7) console.log(j+" 2j");
 				mn = tuple[j].bt;
 				state = j;
 			}
 		}
 	}
-//	if(i==7)console.log(state + " "+ i);
-
-
-
 	if(state == -1){
 		final_ans.push('/');
 		var smit = [];
@@ -75,7 +60,6 @@ for(var i=0;i<50;i++){
 				final_ans.push(tuple[state].pid);
 			}
 			tuple[state].bt-=1;
-			
 			for(var g=i;g<i+1;g++){
 					var smit = [];
 					for(var y=0;y<n;y++){
@@ -85,16 +69,8 @@ for(var i=0;i<50;i++){
 					}
 					que.push(smit);
 			}
-			
-			
-		
-		
 	}
 
-}
-console.log(que.length);
-for(var i=0;i<50;i++){
-	console.log(i+" "+final_ans[i]);
 }
 var cmp_time = [];
 for(var i=0;i<tuple.length;i++){
@@ -102,7 +78,6 @@ for(var i=0;i<tuple.length;i++){
 	cmp_time[i]=-1;
 }
 for(var i=final_ans.length-1;i>=0;i--){
-//	console.log(final_ans[i]);
 	if(final_ans[i]==='/'){}
 		else{
 		if(cmp_time[final_ans[i]-1]==-1){
@@ -111,10 +86,7 @@ for(var i=final_ans.length-1;i>=0;i--){
 		}}
 	
 }
-
-
-var wt  = [];
-
+console.log(que.length);
 for(var i=0;i<n;i++){
 	tat[i]=cmp_time[i] - artt[i];
 
