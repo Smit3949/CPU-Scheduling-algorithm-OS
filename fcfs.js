@@ -1,11 +1,14 @@
 var tuple = [
-	{pid:1,bt:6,art:2},
-	{pid:2,bt:3,art:5},
-	{pid:3,bt:8,art:1},
-	{pid:4,bt:3,art:0},
-	{pid:5,bt:4,art:4},
+	{pid:1,bt:5,art:2},
+	{pid:2,bt:1000,art:3},
+	{pid:3,bt:100,art:2},
+	
 ];
-var tuple_temp = tuple;
+var tuple_temp = [
+	{pid:1,bt:5,art:2},
+	{pid:2,bt:1000,art:3},
+	{pid:3,bt:100,art:2},
+];
 tuple.sort(function(a, b) {
 	if(a.art==b.art){return a.bt-b.bt;}
   return a.art - b.art;
@@ -71,6 +74,7 @@ for(var i=0;i<10000;i++){
 		
 	}
 }
+
 var cmp_time = [];//completion time
 for(var i=0;i<tuple.length;i++){
 	cmp_time[i]=-1;
@@ -79,13 +83,19 @@ for(var i=final_ans.length-1;i>=0;i--){
 	if(final_ans[i]==='/'){}
 		else{
 		if(cmp_time[final_ans[i]-1]==-1){
-			
+			console.log("hey "+i+" hry"+final_ans[i]);
 			cmp_time[final_ans[i]-1]=i+1;
 		}}
 }
 for(var i=0;i<n;i++){
+	//console.log("cm "+cmp_time[i]);
+}
+for(var i=0;i<n;i++){
+	//console.log(cmp_time[i]+" cm "+tuple_temp[i].art);
 	tat[i]=cmp_time[i] - tuple_temp[i].art;
-	wt[i] = tat[i]-tuple[i].bt;
+	//console.log(tat[i]+" tat "+tuple_temp[i].bt);
+	wt[i] = tat[i]-tuple_temp[i].bt;
+	console.log(tat[i]+" "+wt[i]);
 }
 for(var i=0;i<n;i++){
 	total_wt = total_wt + wt[i];
